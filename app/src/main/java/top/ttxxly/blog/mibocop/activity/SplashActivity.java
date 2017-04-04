@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -59,6 +60,9 @@ public class SplashActivity extends AppCompatActivity {
     private String mVersionDescrible;
     private String mUrl;
 
+    /**
+     * 发消息，做相应操作
+     */
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -96,13 +100,21 @@ public class SplashActivity extends AppCompatActivity {
         tv_version.setText("版本名：" + getVersionName());
         Layout_splash = (ConstraintLayout) findViewById(R.id.Layout_splash);
 
-
-        checkVersion();
+        //根据设置中心是否勾选自动更新选项来确定我们是否进行更新
+        SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+        boolean autoUpdate = sp.getBoolean("auto_update", true);
+        if(autoUpdate) {
+            checkVersion();
+        }else {
+            //延时2秒进入主页面（Thread.sleep(2000) 主线程休眠不好）
+            mHandler.sendEmptyMessageDelayed(CODE_ENTER_HOME, 2000);//发送延时2秒的消息
+        }
 
         //渐变动画效果
         AlphaAnimation animation = new AlphaAnimation(0.2f, 1);
         animation.setDuration(2000);
         Layout_splash.startAnimation(animation);
+
     }
 
     /**
@@ -113,18 +125,16 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkVersion() {
         new Thread() {
-
-            private long startTime;
-
             @Override
             public void run() {
                 Message msg = Message.obtain();
-                long startTime = 0 , endTime;
+                long startTime = 0, endTime=0;
 
+                HttpURLConnection conn = null;
                 try {
                     startTime = System.currentTimeMillis();
                     //10.0.2.2是预留IP, 供模拟器访问PC的本地服务器如Tomcat
-                    HttpURLConnection conn = (HttpURLConnection) new URL(
+                    conn = (HttpURLConnection) new URL(
                             "http://10.0.2.2:8080/update.json").openConnection();
                     conn.setRequestMethod("GET");
                     conn.setReadTimeout(2000);
@@ -163,7 +173,10 @@ public class SplashActivity extends AppCompatActivity {
                     //json数据解析失败                    e.printStackTrace();
                     msg.what = CODE_JSON_ERROR;
                 } finally {
-                    endTime = System.currentTimeMillis();
+
+                    //关闭网络
+                    if (conn != null)
+                        endTime = System.currentTimeMillis();
 
                     //真正访问网络使用的时间
                     long usedTime = endTime - startTime;

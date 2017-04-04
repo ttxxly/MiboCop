@@ -1,16 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="top.ttxxly.blog.mibocop.activity.HomeActivity">
+    tools:context="top.ttxxly.blog.mibocop.activity.HomeActivity"
+    android:orientation="vertical">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        style="@style/titleStyle"
+        android:id="@+id/tv_list"
+        android:text="功能列表"
+        />
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="#000000"
+       android:textSize="16sp"
+       android:ellipsize="marquee"
+       android:focusable="true"
+       android:focusableInTouchMode="true"
+       android:marqueeRepeatLimit="marquee_forever"
+       android:scrollHorizontally="true"
+       android:singleLine="true"
+       android:text="手机卫士，您的贴身好管家，能杀毒，能防盗，能清理缓存，，第三方更大的 还有更多好处等你了哦"
+       />
+
+    <top.ttxxly.blog.mibocop.view.MarqueeTextView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="我是主页面"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="247dp" />
-</android.support.constraint.ConstraintLayout>
+        android:text="afghjgfghnmghgmfdgfgnmhsfdgfdg鬼地方个省份递归算法高富帅大概多少广东省发给第三方官方第三个"
+        android:singleLine="true"
+        android:ellipsize="marquee"/>
+
+
+    <GridView
+        android:id="@+id/gv_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:layout_marginTop="8dp"
+         />
+
+</LinearLayout>
