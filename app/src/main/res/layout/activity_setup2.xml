@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ttxxly="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        style="@style/titleStyle"
+        android:text="2.手机卡绑定"/>
+
+    <TextView
+        style="@style/contentStyle"
+        android:text="通过绑定SIM卡："/>
+    <TextView
+        style="@style/contentStyle"
+        android:text="下次重启手机，发现SIM卡发生变化\n就会发送短信"/>
+
+    <top.ttxxly.blog.mibocop.view.SettingItemView
+        android:id="@+id/siv_bind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ttxxly:desc_off="SIM卡未绑定"
+        ttxxly:desc_on="SIM卡已绑定"
+        ttxxly:title="点击绑定SIM卡" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"
+            />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/iv_setup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/lock"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/next"
+            android:text="下一步"
+            android:drawablePadding="3dp"
+            android:background="@drawable/button"
+            android:onClick="Setup2Next"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:drawableRight="@drawable/previous"
+            android:text="上一步"
+            android:drawablePadding="3dp"
+            android:background="@drawable/button"
+            android:onClick="Setup2Last"
+            />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

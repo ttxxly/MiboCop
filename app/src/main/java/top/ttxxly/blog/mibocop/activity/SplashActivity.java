@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -32,6 +31,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import top.ttxxly.blog.mibocop.R;
+import top.ttxxly.blog.mibocop.Utils.SharedPreferenceUtils;
 import top.ttxxly.blog.mibocop.Utils.StreamUtils;
 
 /**
@@ -101,8 +101,8 @@ public class SplashActivity extends AppCompatActivity {
         Layout_splash = (ConstraintLayout) findViewById(R.id.Layout_splash);
 
         //根据设置中心是否勾选自动更新选项来确定我们是否进行更新
-        SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-        boolean autoUpdate = sp.getBoolean("auto_update", true);
+        //SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+        boolean autoUpdate = SharedPreferenceUtils.getBoolean("auto_update", true, this);
         if(autoUpdate) {
             checkVersion();
         }else {

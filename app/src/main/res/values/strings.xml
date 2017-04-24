@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MiboCop</string>
+    <string name="title_activity_base_setup">BaseSetupActivity</string>
 </resources>
