@@ -18,6 +18,9 @@ import top.ttxxly.blog.mibocop.R;
  * 4. 添加自定义api
  * 5. 自定义属性（1.新建values/attrs.xml文件。 2. 声明命令空间 3. 在自定义控件中配置属性 4. 在对应控件中加载属性值）
  * Created by ttxxly on 2017/4/4.
+ *
+ * @author ttxxly
+ * @date 2017年11月1日10:57:58
  */
 
 public class SettingItemView extends RelativeLayout {

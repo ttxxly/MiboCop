@@ -22,6 +22,7 @@ import top.ttxxly.blog.mibocop.Utils.SharedPreferenceUtils;
 
 /**
  * 主页面
+ *
  * @author ttxxly
  */
 public class HomeActivity extends AppCompatActivity {
@@ -33,7 +34,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private int[] mImageIds = new int[]{R.drawable.home_safe, R.drawable.home_callmsgsafe, R.drawable.home_apps
             , R.drawable.home_taskmanager, R.drawable.home_netmanager, R.drawable.home_trojan
-            , R.drawable.home_sysoptimize, R.drawable.home_tools, R.drawable.home_settings, };
+            , R.drawable.home_sysoptimize, R.drawable.home_tools, R.drawable.home_settings,};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,15 +64,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     *手机防盗弹窗
+     * 手机防盗弹窗
      */
     private void ShowSafeDialog() {
         String pwd = SharedPreferenceUtils.getString("passwd", null, this);
-        if( !TextUtils.isEmpty(pwd)) {
+        if (!TextUtils.isEmpty(pwd)) {
             //输入密码弹窗
             showInputPwdDialog(pwd);
-        }else {
+        } else {
             //设置密码弹窗
             ShowSetPwdDialog();
         }
@@ -89,7 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         dialog.setView(view, 0, 0, 0, 0);   //兼容Android 2.x 版本， 去掉上下左右边距
 
         //这里一定要记住 不是 findViewById  是   view.findViewById()
-        Button btnOK  = (Button) view.findViewById(R.id.btn_ok);
+        Button btnOK = (Button) view.findViewById(R.id.btn_ok);
         Button btnCancel = (Button) view.findViewById(R.id.btn_cancel);
 
         final EditText etPwd = (EditText) view.findViewById(R.id.et_pwd);
@@ -101,19 +101,19 @@ public class HomeActivity extends AppCompatActivity {
                 String Pwd = etPwd.getText().toString().trim();//trim去掉末尾的空格
 
                 //判断密码是否正确
-                if(!TextUtils.isEmpty(Pwd) ) {
+                if (!TextUtils.isEmpty(Pwd)) {
                     //如果两个相等
                     String save_pwd = SharedPreferenceUtils.getString("passwd", null, getApplicationContext());
-                    if(MD5Utils.encode(Pwd).equals(save_pwd)){
+                    if (MD5Utils.encode(Pwd).equals(save_pwd)) {
                         //密码正确
                         dialog.dismiss();   //会话框消失
 
                         //跳转到手机防盗设置界面
                         startActivity(new Intent(getApplicationContext(), LostAndFoundActivity.class));
-                    }else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "密码错误", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -139,7 +139,7 @@ public class HomeActivity extends AppCompatActivity {
         dialog.setView(view, 0, 0, 0, 0);   //兼容Android 2.x 版本， 去掉上下左右边距
 
         //这里一定要记住 不是 findViewById  是   view.findViewById()
-        Button btnOK  = (Button) view.findViewById(R.id.btn_ok);
+        Button btnOK = (Button) view.findViewById(R.id.btn_ok);
         Button btnCancel = (Button) view.findViewById(R.id.btn_cancel);
 
         final EditText etPwd = (EditText) view.findViewById(R.id.et_pwd);
@@ -153,9 +153,9 @@ public class HomeActivity extends AppCompatActivity {
                 String ConPwd = etConPwd.getText().toString().trim();//trim去掉末尾的空格
 
                 //判断密码的合法性
-                if(!TextUtils.isEmpty(Pwd) && !TextUtils.isEmpty(ConPwd)) {
+                if (!TextUtils.isEmpty(Pwd) && !TextUtils.isEmpty(ConPwd)) {
                     //如果两个相等
-                    if(Pwd.equals(ConPwd)){
+                    if (Pwd.equals(ConPwd)) {
                         //保存密码
                         SharedPreferenceUtils.putString("passwd", MD5Utils.encode(Pwd), getApplicationContext());
 
@@ -163,10 +163,10 @@ public class HomeActivity extends AppCompatActivity {
 
                         //跳转到手机防盗设置页面
                         startActivity(new Intent(getApplicationContext(), LostAndFoundActivity.class));
-                    }else {
+                    } else {
                         Toast.makeText(getApplicationContext(), "密码不一致", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(getApplicationContext(), "密码不能为空", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -206,9 +206,10 @@ public class HomeActivity extends AppCompatActivity {
             //获取相应的布局
             TextView tvName = (TextView) view.findViewById(R.id.tv_name);
             ImageView ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
-
-            tvName.setText(mHomeNames[position]);            //根据位置来设置对应的名称
-            ivIcon.setImageResource(mImageIds[position]);    //根据位置来设置相应的图标
+            //根据位置来设置对应的名称
+            tvName.setText(mHomeNames[position]);
+            //根据位置来设置相应的图标
+            ivIcon.setImageResource(mImageIds[position]);
 
             return view;
         }

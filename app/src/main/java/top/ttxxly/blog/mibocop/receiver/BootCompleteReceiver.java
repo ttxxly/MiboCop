@@ -12,7 +12,7 @@ import android.widget.Toast;
 import top.ttxxly.blog.mibocop.Utils.SharedPreferenceUtils;
 
 /**
- * 开启 重启 广播接受者， 接受系统广播，重启判断 SIM卡是否变更
+ * 开启 重启 广播接收者， 接受系统广播，重启判断 SIM卡是否变更
  * 需要权限： <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
  * 需要注册：
  *          <receiver android:name=".receiver.BootCompleteReceiver">
@@ -20,6 +20,9 @@ import top.ttxxly.blog.mibocop.Utils.SharedPreferenceUtils;
  *                  <action android:name="android.intent.action.BOOT_COMPLETED" />
  *              </intent-filter>
  *           </receiver>
+ *
+ * @author ttxxly
+ * @date 2017年11月1日10:55:44
  */
 public class BootCompleteReceiver extends BroadcastReceiver {
 
