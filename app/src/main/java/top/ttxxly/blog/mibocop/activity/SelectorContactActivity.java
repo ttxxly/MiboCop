@@ -40,9 +40,10 @@ public class SelectorContactActivity extends AppCompatActivity {
         if (list == null) {
             Toast.makeText(this, "没有获取到哦哦 1333333 ！！！！", Toast.LENGTH_SHORT).show();
         } else {
-            lvContact.setAdapter(new SimpleAdapter(this, list, R.layout.list_item_contact,
-                    new String[]{"name", "phone"},
-                    new int[]{R.id.tv_name, R.id.tv_phone}));
+            Toast.makeText(this, "没有获取到哦哦 1333333 ！！！！", Toast.LENGTH_SHORT).show();
+//            lvContact.setAdapter(new SimpleAdapter(this, list, R.layout.list_item_contact,
+//                    new String[]{"name", "phone"},
+//                    new int[]{R.id.tv_name, R.id.tv_phone}));
         }
 
         lvContact.setOnItemClickListener(new AdapterView.OnItemClickListener() {
